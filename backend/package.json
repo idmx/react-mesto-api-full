@@ -9,7 +9,7 @@
     "start": "node app.js",
     "lint": "npx eslint .",
     "lint:fix": "npx eslint . --fix",
-    "deploy": "npm run build && scp -r ./build/* idmxslava@51.250.65.247:/home/praktikum/react-mesto-api-full"
+    "deploy": "npm run build && scp -r ./build/* idmxslava@51.250.65.247:/home/praktikum/react-mesto-api-full/frontend"
   },
   "repository": {
     "type": "git",
