@@ -14,6 +14,7 @@ class AuthApi {
     return fetch( `${ this.options.baseUrl }/signup`, {
       method: "POST",
       headers: this.options.headers,
+      credentials: 'include',
       body: JSON.stringify({
           password,
           email,
@@ -28,6 +29,7 @@ class AuthApi {
     return fetch( `${ this.options.baseUrl }/signin`, {
       method: "POST",
       headers: this.options.headers,
+      credentials: 'include',
       body: JSON.stringify({
           password,
           email,
@@ -42,7 +44,8 @@ class AuthApi {
     return fetch( `${ this.options.baseUrl }/users/me`, {
       headers: {
         'Content-Type': 'application/json',
-      }
+      },
+      credentials: 'include'
     })
       .then( res => {
         return this._getResponseData( res )

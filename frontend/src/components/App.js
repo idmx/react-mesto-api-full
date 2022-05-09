@@ -36,15 +36,15 @@ function App() {
   const [ hasSuccess, setHasSuccess ] = React.useState( false );
 
   React.useEffect(() => {
-    const jwt = localStorage.getItem( 'JWT' );
-    authApi.isSigned()
-      .then( res => {
-        setEmail( res.data.email );
-        setLoggedIn( true );
-      })
-      .catch( err => {
-        setLoggedIn( false );
-      })
+    // const jwt = localStorage.getItem( 'JWT' );
+    // authApi.isSigned()
+    //   .then( res => {
+    //     setEmail( res.data.email );
+    //     setLoggedIn( true );
+    //   })
+    //   .catch( err => {
+    //     setLoggedIn( false );
+    //   })
     loggedIn && api.getData()
       .then( ( [ userInform, cards ] ) => {
         setCurrentUser( userInform );
@@ -74,7 +74,7 @@ function App() {
       .then( res => {
         setEmail( email );
         setLoggedIn( true );
-        localStorage.setItem( 'JWT', res.token )
+        //localStorage.setItem( 'JWT', res.token )
         history.push( '/' );
       })
       .catch(() => {
