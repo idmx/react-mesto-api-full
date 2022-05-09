@@ -36,14 +36,14 @@ function App() {
   const [ hasSuccess, setHasSuccess ] = React.useState( false );
 
   React.useEffect(() => {
-    // authApi.isSigned()
-    //   .then( res => {
-    //     setEmail( res.email );
-    //     setLoggedIn( true );
-    //   })
-    //   .catch( err => {
-    //     setLoggedIn( false );
-    //   })
+    hasJwt() && authApi.isSigned()
+      .then( res => {
+        setEmail( res.email );
+        setLoggedIn( true );
+      })
+      .catch( err => {
+        setLoggedIn( false );
+      })
     loggedIn && api.getData()
       .then( ( [ userInform, cards ] ) => {
         setCurrentUser( userInform );
@@ -68,6 +68,20 @@ function App() {
       })
   }
 
+  function hasJwt() {
+    console.log(document.cookie)
+    let cookie = document.cookie.split(';');
+    cookie = cookie.filter( item => item.match('jwt='))
+    return cookie.length
+  }
+
+  function removeJwt() {
+    let cookie = document.cookie.split(';');
+    cookie = cookie.filter( item => item.match('jwt='));
+    console.log(`${cookie[0]};max-age=0`)
+    document.cookie = `${cookie[0]};max-age=0`
+  }
+
   function handleSignInClick( email, password, history ) {
     authApi.signIn( email, password )
       .then( res => {
@@ -85,7 +99,7 @@ function App() {
 
   //Удаляем токен, разлогиниваемся, перенаправляем на страницу входа в Header
   function handleLogout() {
-    localStorage.removeItem('JWT');
+    removeJwt();
     setLoggedIn( false );
   }
   
