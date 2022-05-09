@@ -148,7 +148,9 @@ module.exports.login = (req, res, next) => {
       const token = jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret', { expiresIn: '7d' });
       res.cookie('jwt', token, {
         maxAge: 3600000 * 24 * 7,
-        sameSite: 'none'
+        sameSite: 'none',
+        secure: true,
+        domain: ".my-mesto.nomoredomains.xyz"
       });
       res.send({ _id: user._id });
     })
