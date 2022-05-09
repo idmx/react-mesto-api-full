@@ -37,7 +37,7 @@ function App() {
 
   React.useEffect(() => {
     const jwt = localStorage.getItem( 'JWT' );
-    jwt && authApi.isSigned( jwt )
+    authApi.isSigned()
       .then( res => {
         setEmail( res.data.email );
         setLoggedIn( true );

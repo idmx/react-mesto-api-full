@@ -38,11 +38,10 @@ class AuthApi {
       })
   }
 
-  isSigned( jwt ) {
+  isSigned() {
     return fetch( `${ this.options.baseUrl }/users/me`, {
       headers: {
         'Content-Type': 'application/json',
-        "Authorization" : `Bearer ${ jwt }`
       }
     })
       .then( res => {
@@ -52,7 +51,7 @@ class AuthApi {
 
 }
   const authApi = new AuthApi({
-    baseUrl: 'https://auth.nomoreparties.co',
+    baseUrl: 'https://api.my-mesto.nomoredomains.xyz',
     headers: {
       'Content-Type': 'application/json'
     }
