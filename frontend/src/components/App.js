@@ -36,15 +36,14 @@ function App() {
   const [ hasSuccess, setHasSuccess ] = React.useState( false );
 
   React.useEffect(() => {
-    // const jwt = localStorage.getItem( 'JWT' );
-    // jwt && authApi.isSigned( jwt )
-    //   .then( res => {
-    //     setEmail( res.data.email );
-    //     setLoggedIn( true );
-    //   })
-    //   .catch( err => {
-    //     setLoggedIn( false );
-    //   })
+    authApi.isSigned()
+      .then( res => {
+        setEmail( res.email );
+        setLoggedIn( true );
+      })
+      .catch( err => {
+        setLoggedIn( false );
+      })
     loggedIn && api.getData()
       .then( ( [ userInform, cards ] ) => {
         setCurrentUser( userInform );
@@ -134,7 +133,7 @@ function App() {
   }
 
   function handleCardLike( card ) {
-    const isLiked = card.likes.some(i => i._id === currentUser._id);
+    const isLiked = card.likes.some(i => i === currentUser._id);
     let method = '';
     method = isLiked ? 'DELETE' : 'PUT'
     api.setLikePhoto( card._id, method )
