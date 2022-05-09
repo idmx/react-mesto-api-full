@@ -36,14 +36,14 @@ function App() {
   const [ hasSuccess, setHasSuccess ] = React.useState( false );
 
   React.useEffect(() => {
-    authApi.isSigned()
-      .then( res => {
-        setEmail( res.email );
-        setLoggedIn( true );
-      })
-      .catch( err => {
-        setLoggedIn( false );
-      })
+    // authApi.isSigned()
+    //   .then( res => {
+    //     setEmail( res.email );
+    //     setLoggedIn( true );
+    //   })
+    //   .catch( err => {
+    //     setLoggedIn( false );
+    //   })
     loggedIn && api.getData()
       .then( ( [ userInform, cards ] ) => {
         setCurrentUser( userInform );
