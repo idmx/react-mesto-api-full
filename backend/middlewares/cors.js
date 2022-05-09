@@ -4,7 +4,7 @@ const allowed = [
   "http://localhost:3000"
 ];
 
-module.exports.cors = (req, res, next) => {
+const cors = (req, res, next) => {
   const { origin } = req.headers;
   const { method } = req;
   if (allowed.includes(origin)) {
@@ -23,3 +23,5 @@ module.exports.cors = (req, res, next) => {
 
   return next();
 }
+
+module.exports = cors;
