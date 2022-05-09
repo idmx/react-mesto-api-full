@@ -52,7 +52,7 @@ function App() {
   function handleSignUpClick( email, password, history ) {
     authApi.signUp( email, password )
       .then( res => {
-        setEmail( res.data.email );
+        setEmail( res.email );
         setMessage( 'Вы успешно зарегистрировались!' );
         setHasSuccess( true );
         history.push( '/sign-in' );
