@@ -36,20 +36,17 @@ function App() {
   const [ hasSuccess, setHasSuccess ] = React.useState( false );
 
   React.useEffect(() => {
-    hasJwt() && authApi.isSigned()
-      .then( res => {
-        setEmail( res.email );
-        setLoggedIn( true );
-      })
-      .catch( err => {
-        setLoggedIn( false );
-      })
-    loggedIn && api.getData()
-      .then( ( [ userInform, cards ] ) => {
-        setCurrentUser( userInform );
-        setCardList( cards );
-      })
-      .catch( err => console.log(`Ошибка загрузки данных: ${err}` ) );
+    hasJwt() && api.getData()
+    .then( ( [ userInform, cards ] ) => {
+      setCurrentUser( userInform );
+      setCardList( cards );
+      setEmail( userInform.email );
+      setLoggedIn( true );
+    })
+    .catch( err => {
+      setLoggedIn( false );
+      console.log(`Ошибка загрузки данных: ${err}` )
+    })
   }, [ loggedIn ])
 
   function handleSignUpClick( email, password, history ) {

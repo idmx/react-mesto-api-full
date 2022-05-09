@@ -49,19 +49,6 @@ class AuthApi {
         return this._getResponseData( res )
       })
   }
-
-  isSigned() {
-    return fetch( `${ this.options.baseUrl }/users/me`, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      credentials: 'include',
-    })
-      .then( res => {
-        return this._getResponseData( res )
-      })
-  }
-
 }
   const authApi = new AuthApi({
     baseUrl: 'https://api.my-mesto.nomoredomains.xyz',
