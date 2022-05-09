@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 require('dotenv').config();
 const cookieParser = require('cookie-parser');
 const { errors, Joi, celebrate } = require('celebrate');
-const { login, createUser } = require('./controllers/users');
+const { login, createUser, logout } = require('./controllers/users');
 const auth = require('./middlewares/auth');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const cors = require('./middlewares/cors');
@@ -44,6 +44,8 @@ app.post('/signup', celebrate({
 }), createUser);
 
 app.use(auth);
+
+app.use('/signout', logout);
 
 app.use('/users', require('./routes/users'));
 app.use('/cards', require('./routes/cards'));

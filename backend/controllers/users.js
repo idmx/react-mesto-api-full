@@ -127,6 +127,16 @@ module.exports.createUser = (req, res, next) => {
     .catch(next);
 };
 
+module.exports.logout = (req, res) => {
+  res.cookie('jwt', '', {
+    maxAge: -1,
+    sameSite: 'none',
+    domain: ".nomoredomains.xyz",
+    secure: true
+  })
+  .send({ message: 'Успешно' });
+};
+
 module.exports.login = (req, res, next) => {
   const { email, password } = req.body;
   User.findOne({ email }).select('+password')
