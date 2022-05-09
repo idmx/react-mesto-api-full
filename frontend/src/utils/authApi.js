@@ -40,6 +40,16 @@ class AuthApi {
       })
   }
 
+  signOut() {
+    return fetch( `${ this.options.baseUrl }/signout`, {
+      headers: this.options.headers,
+      credentials: 'include',
+    })
+      .then( res => {
+        return this._getResponseData( res )
+      })
+  }
+
   isSigned() {
     return fetch( `${ this.options.baseUrl }/users/me`, {
       headers: {

@@ -75,19 +75,11 @@ function App() {
     return cookie.length
   }
 
-  function removeJwt() {
-    let cookie = document.cookie.split(';');
-    cookie = cookie.filter( item => item.match('jwt='));
-    console.log(`${cookie[0]};max-age=0`)
-    document.cookie = `${cookie[0]};max-age=0`
-  }
-
   function handleSignInClick( email, password, history ) {
     authApi.signIn( email, password )
       .then( res => {
         setEmail( email );
         setLoggedIn( true );
-        //localStorage.setItem( 'JWT', res.token )
         history.push( '/' );
       })
       .catch(() => {
@@ -98,8 +90,8 @@ function App() {
   }
 
   //Удаляем токен, разлогиниваемся, перенаправляем на страницу входа в Header
-  function handleLogout() {
-    removeJwt();
+  async function handleLogout() {
+    await authApi.signOut();
     setLoggedIn( false );
   }
   
