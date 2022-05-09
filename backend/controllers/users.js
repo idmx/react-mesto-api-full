@@ -150,7 +150,7 @@ module.exports.login = (req, res, next) => {
         maxAge: 3600000 * 24 * 7,
         sameSite: 'none',
         secure: true,
-        domain: ".my-mesto.nomoredomains.xyz"
+        domain: ".nomoredomains.xyz"
       });
       res.send({ _id: user._id });
     })
