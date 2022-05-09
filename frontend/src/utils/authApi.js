@@ -57,7 +57,8 @@ class AuthApi {
     baseUrl: 'https://api.my-mesto.nomoredomains.xyz',
     headers: {
       'Content-Type': 'application/json',
-    }
+    },
+    credentials: 'include'
   });
   
   export default authApi
