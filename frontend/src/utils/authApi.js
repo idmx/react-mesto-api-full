@@ -53,7 +53,7 @@ class AuthApi {
   const authApi = new AuthApi({
     baseUrl: 'https://api.my-mesto.nomoredomains.xyz',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     }
   });
   
