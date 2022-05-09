@@ -66,7 +66,6 @@ function App() {
   }
 
   function hasJwt() {
-    console.log(document.cookie)
     let cookie = document.cookie.split(';');
     cookie = cookie.filter( item => item.match('jwt='))
     return cookie.length
