@@ -45,7 +45,7 @@ class AuthApi {
       headers: {
         'Content-Type': 'application/json',
       },
-      credentials: 'include'
+      credentials: 'include',
     })
       .then( res => {
         return this._getResponseData( res )
