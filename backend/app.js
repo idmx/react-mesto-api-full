@@ -7,7 +7,7 @@ const { errors, Joi, celebrate } = require('celebrate');
 const { login, createUser } = require('./controllers/users');
 const auth = require('./middlewares/auth');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
-const cors = require('cors');
+const cors = require('./middlewares/cors');
 
 const { PORT = 3000 } = process.env;
 const app = express();
@@ -25,6 +25,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
 app.use(requestLogger);
+
+app.use(cors);
 
 app.post('/signin', celebrate({
   body: Joi.object().keys({

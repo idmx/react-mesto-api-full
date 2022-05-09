@@ -12,7 +12,8 @@ class Api {
 
   _getProfileInfo() {
     return fetch( `${ this.options.baseUrl }/users/me`, {
-      headers: this.options.headers
+      headers: this.options.headers,
+      credentials: 'include'
     })
       .then( res => {
         return this._getResponseData( res )
@@ -23,6 +24,7 @@ class Api {
     return fetch( `${ this.options.baseUrl }/users/me`, {
       method: 'PATCH',
       headers: this.options.headers,
+      credentials: 'include',
       body: JSON.stringify({
         name,
         about
@@ -37,6 +39,7 @@ class Api {
     return fetch( `${ this.options.baseUrl }/users/me/avatar`, {
       method: 'PATCH',
       headers: this.options.headers,
+      credentials: 'include',
       body: JSON.stringify({
         avatar
       })
@@ -48,7 +51,8 @@ class Api {
 
   _getInitialCards() {
     return fetch( `${ this.options.baseUrl }/cards`, {
-      headers: this.options.headers
+      headers: this.options.headers,
+      credentials: 'include'
     })
       .then( res => {
         return this._getResponseData( res )
@@ -62,7 +66,8 @@ class Api {
   setLikePhoto( cardId, method ) {
     return fetch( `${ this.options.baseUrl }/cards/${ cardId }/likes`, {
       method,
-      headers: this.options.headers
+      headers: this.options.headers,
+      credentials: 'include'
     })
       .then( res => {
         return this._getResponseData( res )
@@ -73,6 +78,7 @@ class Api {
     return fetch( `${ this.options.baseUrl }/cards`, {
       method: "POST",
       headers: this.options.headers,
+      credentials: 'include',
       body: JSON.stringify({
         name,
         link,
@@ -87,6 +93,7 @@ class Api {
     return fetch( `${ this.options.baseUrl }/cards/${ cardId }`, {
       method: "DELETE",
       headers: this.options.headers,
+      credentials: 'include'
     })
       .then( res => {
         return this._getResponseData( res )
@@ -98,7 +105,7 @@ const api = new Api({
   baseUrl: 'https://api.my-mesto.nomoredomains.xyz',
   headers: {
     'Content-Type': 'application/json'
-  }
+  },
 });
 
 export default api
